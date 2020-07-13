@@ -12,18 +12,56 @@ class Signup extends Component {
       errors: ''
      };
   }
-handleChange = (event) => {
+
+  handleChange = (event) => {
     const {name, value} = event.target
     this.setState({
       [name]: value
     })
   };
-handleSubmit = (event) => {
-    event.preventDefault()
-  };
+
+  handleSubmit = (event) => {
+      event.preventDefault()
+      const {username, email, password, password_confirmation} = this.state
+      let user = {
+        username: username,
+        email: email,
+        password: password,
+        password_confirmation: password_confirmation
+      }
+
+  axios.post('http://localhost:3000/users', {user}, {withCredentials: true})
+      .then(response => {
+        if (response.data.status === 'created') {
+          this.props.handleLogin(response.data)
+          this.redirect()
+        } else {
+          this.setState({
+            errors: response.data.errors
+          })
+        }
+      })
+      .catch(error => console.log('api errors:', error))
+    };
+
+  redirect = () => {
+      this.props.history.push('/')
+    }
+
+  handleErrors = () => {
+      return (
+        <div>
+          <ul>{this.state.errors.map((error) => {
+            return key={error}>{error}</li>
+          })}
+          </ul>
+        </div>
+      )
+    }
+
 render() {
     const {name, email, password, password_confirmation} = this.state
-return (
+  return (
       <div>
         <h1>Sign Up</h1>
         <form onSubmit={this.handleSubmit}>
@@ -61,6 +99,12 @@ return (
           </button>
 
         </form>
+        <div>
+          {
+            this.state.errors ? this.handleErrors() : null
+          }
+        </div>
+
       </div>
     );
   }

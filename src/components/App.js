@@ -72,6 +72,11 @@ class App extends Component {
                 <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
                 )}
               />
+              <Route
+                exact path='/'
+                render={props => (
+                <Home {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>)}
+                 />
             </Switch>
           </BrowserRouter>
         </div>
