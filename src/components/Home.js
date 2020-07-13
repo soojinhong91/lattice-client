@@ -1,5 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Home = (props) => {
   const handleClick = () => {
@@ -12,7 +13,6 @@ const Home = (props) => {
     }
 
   return (
-
       <div>
         <Link to='/login'>Log In</Link>
         <br></br>
@@ -20,7 +20,7 @@ const Home = (props) => {
         <br></br>
         {
           props.loggedInStatus ?
-          <Link to='/logout' onClick={handleClick}>Log Out</Link> :
+          <Link to='/logout' onClick={ handleClick }>Log Out</Link> :
           null
         }
       </div>

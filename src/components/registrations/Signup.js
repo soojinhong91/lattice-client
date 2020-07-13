@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
 class Signup extends Component {
   constructor(props) {
@@ -52,7 +52,7 @@ class Signup extends Component {
       return (
         <div>
           <ul>{this.state.errors.map((error) => {
-            return key={error}>{error}</li>
+            return <li key={error}>{error}</li>
           })}
           </ul>
         </div>

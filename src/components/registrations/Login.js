@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-import {Link} from 'react-router-dom'
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -69,13 +69,6 @@ render() {
       <div>
         <h1>Log In</h1>
         <form onSubmit={this.handleSubmit}>
-          <input
-            placeholder="username"
-            type="text"
-            name="username"
-            value={name}
-            onChange={this.handleChange}
-          />
           <input
             placeholder="email"
             type="text"
