@@ -19,4 +19,5 @@ export default Task;
 //iterate over all of the tasks on the json page
 //map the tasks to their own unique paragraphs
 
-//somehow, you have to allow for the creation of new 
+//somehow, you have to allow for the creation of new tasks
+//that means...

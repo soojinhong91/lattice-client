@@ -52,7 +52,7 @@ class Signup extends Component {
       return (
         <div>
           <ul>{this.state.errors.map((error) => {
-            return key={error}>{error}</li>
+            return <li key={error}>{error}</li>
           })}
           </ul>
         </div>

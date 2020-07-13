@@ -70,13 +70,6 @@ render() {
         <h1>Log In</h1>
         <form onSubmit={this.handleSubmit}>
           <input
-            placeholder="username"
-            type="text"
-            name="username"
-            value={name}
-            onChange={this.handleChange}
-          />
-          <input
             placeholder="email"
             type="text"
             name="email"

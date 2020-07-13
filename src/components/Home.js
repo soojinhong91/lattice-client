@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import axios from 'axios';
 
 const Home = (props) => {
   const handleClick = () => {
