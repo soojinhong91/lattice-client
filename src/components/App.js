@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+<<<<<<< HEAD
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
+=======
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+>>>>>>> 82b3d024d8eddea9659b7487ca61db177d20bb40
 import Home from './Home'
 import Login from './registrations/Login'
 import Signup from './registrations/Signup'

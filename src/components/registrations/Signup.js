@@ -68,7 +68,7 @@ render() {
           <input
             placeholder="username"
             type="text"
-            name="username"
+            name="name"
             value={name}
             onChange={this.handleChange}
           />
