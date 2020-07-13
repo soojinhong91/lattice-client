@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-<<<<<<< HEAD
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
-=======
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
->>>>>>> 82b3d024d8eddea9659b7487ca61db177d20bb40
 import Home from './Home'
 import Login from './registrations/Login'
 import Signup from './registrations/Signup'
@@ -46,11 +42,12 @@ class App extends Component {
      })
     }
 
-    handleLogout = () => {
+    handleLogout = (redirect) => {
+      console.log('tedfsadfsadfasdfsafsd')
      this.setState({
        isLoggedIn: false,
        user: {}
-     })
+     }, redirect)
     }
 
     render() {
@@ -58,12 +55,7 @@ class App extends Component {
         <div>
           <BrowserRouter>
             <Switch>
-              <Route
-                exact path='/'
-                render={props => (
-                <Home {...props} loggedInStatus={this.state.isLoggedIn}/>
-                )}
-              />
+
               <Route
                 exact path='/login'
                 render={props => (

@@ -22,9 +22,9 @@ class Signup extends Component {
 
   handleSubmit = (event) => {
       event.preventDefault()
-      const {username, email, password, password_confirmation} = this.state
+      const {name, email, password, password_confirmation} = this.state
       let user = {
-        username: username,
+        name: name,
         email: email,
         password: password,
         password_confirmation: password_confirmation
