@@ -22,9 +22,10 @@ class Signup extends Component {
 
   handleSubmit = (event) => {
       event.preventDefault()
-      const {username, email, password, password_confirmation} = this.state
+      console.log(event)
+      const {name, email, password, password_confirmation} = this.state
       let user = {
-        username: username,
+        name: name,
         email: email,
         password: password,
         password_confirmation: password_confirmation
@@ -68,7 +69,7 @@ render() {
           <input
             placeholder="username"
             type="text"
-            name="username"
+            name="name"
             value={name}
             onChange={this.handleChange}
           />
