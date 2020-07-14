@@ -38,7 +38,6 @@ class App extends Component {
     }
 
     handleLogin = (data) => {
-      console.log(data)
      this.setState({
        isLoggedIn: true,
        user: data.user

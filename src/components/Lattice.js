@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Card from './Card'
+import Task from './Task'
 
 const SERVER_URL_PROJECTS = 'http://localhost:3000/projects'
 
@@ -35,7 +35,7 @@ class Lattice extends Component {
 
         <ProjectForm onSubmit={ this.saveProject } />
         <ProjectList name={ this.state.name } />
-        <Card />
+        <Task />
       </div>
     );
   }
@@ -70,16 +70,11 @@ class ProjectForm extends Component {
 }
 
 const ProjectList = (props) => {
-  console.log(props.name.projects);
   return (
     <div>
       { props.name.map( (p) => <button key={ p.id }>{ p.name }</button> )}
     </div>
   );
-}
+};
 
 export default Lattice;
-
-
-// this came from line 77
-// <Card project={p.id} />
