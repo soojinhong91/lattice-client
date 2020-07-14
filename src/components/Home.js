@@ -4,6 +4,8 @@ import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Login from './registrations/Login'
 import Signup from './registrations/Signup'
+import Lattice from './Lattice';
+
 
 
 class Home extends Component {
@@ -50,7 +52,10 @@ class Home extends Component {
 
         {
           this.props.loggedInStatus
-          ? <Button variant="contained" to='/logout' onClick={this.handleClick}>Log Out</Button>
+          ? <div>
+              <Button variant="contained" to='/logout' onClick={this.handleClick}>Log Out</Button>
+              <Lattice />
+            </div>
           : null
         }
       </div>

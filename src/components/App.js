@@ -67,7 +67,6 @@ class App extends Component {
               />
             </Switch>
           </BrowserRouter>
-          <Lattice />
         </div>
       );
     }

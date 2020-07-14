@@ -6,7 +6,6 @@ class Task extends Component {
   render() {
     return(
       <div>
-        <h1>Task coming soon</h1>
       </div>
     );
   }
