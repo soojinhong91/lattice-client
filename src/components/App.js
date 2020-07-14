@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import 'fontsource-roboto';
 import Home from './Home'
 import Login from './registrations/Login'
 import Signup from './registrations/Signup'
@@ -75,6 +76,7 @@ class App extends Component {
               />
             </Switch>
           </BrowserRouter>
+          <Lattice />
         </div>
       );
     }
