@@ -21,10 +21,10 @@ class Lattice extends Component {
 
   }
 
-  saveProject(newProject) {
-    console.log(this.state)
-    axios.post(SERVER_URL_PROJECTS, {name: newProject}).then( (res) => {
-      this.setState({name: [...this.state.name, res.data]})
+  saveProject(data) {
+    console.log(data)
+    axios.post(SERVER_URL_PROJECTS, {name: data}).then((res) => {
+      this.setState({name: this.props << data})
     })
   }
 
@@ -35,7 +35,6 @@ class Lattice extends Component {
 
         <ProjectForm onSubmit={ this.saveProject } />
         <ProjectList name={ this.state.name } />
-        <Card />
       </div>
     );
   }
@@ -73,7 +72,12 @@ const ProjectList = (props) => {
   console.log(props.name.projects);
   return (
     <div>
-      { props.name.map( (p) => <button key={ p.id }>{ p.name }</button> )}
+      { props.name.map( (p) =>
+        <div>
+          <button key={ p.id }>{ p.name }</button>
+          <Card project={p.id}/>
+        </div> )}
+
     </div>
   );
 }
