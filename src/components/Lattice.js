@@ -9,16 +9,19 @@ class Lattice extends Component {
     super();
     this.state = {
       name: [],
+      currentlyRendering: {}
     };
     this.saveProject = this.saveProject.bind(this);
 
     const fetchProjects = () => {
       axios.get(SERVER_URL_PROJECTS).then( (res) => {
-        this.setState({name: res.data.projects});
+        console.log(res.data)
+        this.setState({name: res.data, currentlyRendering: res.data[0]});
       })
     }
 
     fetchProjects();
+    this.saveProject = this.saveProject.bind(this)
 
   }
 
@@ -34,13 +37,17 @@ class Lattice extends Component {
     })
   }
 
+  changeCurrentlyRendering(index){
+    this.setState({currentlyRendering: this.state.name[index]})
+  }
+
   render() {
     return(
       <div>
         <h1>Projects</h1>
 
         <ProjectForm onSubmit={ this.saveProject } />
-        <ProjectList name={ this.state.name } />
+        <ProjectList pickProject={ this.changeCurrentlyRendering} name={ this.state.name } />
       </div>
     );
   }
@@ -77,14 +84,17 @@ class ProjectForm extends Component {
 const ProjectList = (props) => {
   return (
     <div>
-      { props.name.map( (p) =>
+      { props.name.map( (p, i) =>
         <div>
-          <button key={ p.id }>{ p.name }</button>
-          <Card project={p}/>
+          <button onClick={ () => props.pickProject(i) } key={ p.project.id }>{ p.project.name }</button>
+          <Card project={p.cards}/>
         </div> )}
-
+    {/* <CardDeck info={this.state.currentlyRendering}
+          the buttons */}
     </div>
   );
 };
 
 export default Lattice;
+
+// <button key={ p.project.id }>{ p.project.name }</button>

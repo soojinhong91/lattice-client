@@ -8,38 +8,20 @@ const SERVER_URL_CARDS = `http://localhost:3000/cards`
 class Card extends Component {
   constructor() {
     super();
-    this.state = {
-      data: [],
-      currentData: []
-    };
-
-  const fetchTasks = () => {
-    axios.get(SERVER_URL_CARDS).then( (res) => {
-      this.setState({data: res.data});
-    })
-  }
-
-    // fetchTasks();
-  }
-
-  currentCards = () => {
-    let currentData = []
-    for (let i = 0; i < this.state.data.cards.length; i++){
-      if (this.state.data.cards[i].project_id === this.props.project){
-        currentData.push(this.state.data.cards[i])
-      }
-    }
   }
 
   render() {
     // console.log(this.state.data.cards)
     return(
+      // console.log(this.props.project.cards)
       <div>
-        <p>{this.props.project.name} hello</p>
-        <Task />
+        <p>{this.props.project.cards } hello</p>
       </div>
     );
   }
 }
 
 export default Card;
+
+// render a Task component and pass a card prop with the card object
+// <Task card={ pass the card object here }/>
