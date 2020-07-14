@@ -13,7 +13,7 @@ class Lattice extends Component {
 
     const fetchProjects = () => {
       axios.get(SERVER_URL_PROJECTS).then( (res) => {
-        this.setState({name: res.data});
+        this.setState({name: res.data.projects});
       })
     }
 
@@ -26,7 +26,7 @@ class Lattice extends Component {
         <h1>Projects</h1>
 
 
-        <ProjectList projects={ this.state.projects } />
+        <ProjectList name={ this.state.name } />
         <Task />
       </div>
     );
@@ -36,7 +36,7 @@ class Lattice extends Component {
 const ProjectList = (props) => {
   return (
     <div>
-      { props.name.map( (p) => <p key={ p.id }>{ p.name }</p> )}
+      { props.name.map( (p) => <button key={ p.id }>{ p.name }</button> )}
     </div>
   );
 };
