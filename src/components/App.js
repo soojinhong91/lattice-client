@@ -46,7 +46,6 @@ class App extends Component {
     }
 
     handleLogout = (redirect) => {
-      console.log('tedfsadfsadfasdfsafsd')
      this.setState({
        isLoggedIn: false,
        user: {}
