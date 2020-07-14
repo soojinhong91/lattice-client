@@ -19,7 +19,7 @@ class Card extends Component {
     })
   }
 
-    fetchTasks();
+    // fetchTasks();
   }
 
   currentCards = () => {
@@ -32,10 +32,10 @@ class Card extends Component {
   }
 
   render() {
-    console.log(this.state.data.cards)
+    // console.log(this.state.data.cards)
     return(
       <div>
-        <p>{this.state.data[0]} hello</p>
+        <p>{this.props.project.name} hello</p>
         <Task />
       </div>
     );
