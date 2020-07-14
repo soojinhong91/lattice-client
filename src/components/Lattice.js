@@ -8,7 +8,7 @@ class Lattice extends Component {
   constructor() {
     super();
     this.state = {
-      name: []
+      name: [],
     };
     this.saveProject = this.saveProject.bind(this);
 
@@ -21,6 +21,8 @@ class Lattice extends Component {
     fetchProjects();
 
   }
+
+
 
   saveProject(data) {
     console.log(data)
