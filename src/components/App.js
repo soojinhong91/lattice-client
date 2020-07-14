@@ -45,11 +45,12 @@ class App extends Component {
      })
     }
 
-    handleLogout = () => {
+    handleLogout = (redirect) => {
+      console.log('tedfsadfsadfasdfsafsd')
      this.setState({
        isLoggedIn: false,
        user: {}
-     })
+     }, redirect)
     }
 
     render() {
@@ -66,6 +67,7 @@ class App extends Component {
               />
             </Switch>
           </BrowserRouter>
+          <Lattice />
         </div>
       );
     }
