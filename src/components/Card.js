@@ -19,7 +19,7 @@ class Card extends Component {
     })
   }
 
-    fetchTasks();
+    // fetchTasks();
   }
 
   currentCards = () => {
@@ -29,13 +29,16 @@ class Card extends Component {
         currentData.push(this.state.data.cards[i])
       }
     }
+    this.setState({currentData: currentData})
   }
 
   render() {
-    console.log(this.state.data.cards)
+    // console.log(this.state.currentData)
+    // console.log(this.props.project)
     return(
+      // console.log(this.props.project.cards.name)
       <div>
-        <p>{this.state.data[0]} hello</p>
+        <p>{this.props.project} hello</p>
         <Task />
       </div>
     );

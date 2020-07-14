@@ -18,13 +18,16 @@ class Lattice extends Component {
     }
 
     fetchProjects();
+    this.saveProject = this.saveProject.bind(this)
 
   }
 
   saveProject(data) {
     console.log(data)
     axios.post(SERVER_URL_PROJECTS, {name: data}).then((res) => {
-      this.setState({name: this.props << data})
+      console.log(data)
+      console.log(res.data)
+      this.setState({name: [res.data.projects, ...this.state.name]})
     })
   }
 
@@ -69,13 +72,14 @@ class ProjectForm extends Component {
 }
 
 const ProjectList = (props) => {
+  if (!props.name) {return ''}
   console.log(props.name.projects);
   return (
     <div>
       { props.name.map( (p) =>
         <div>
           <button key={ p.id }>{ p.name }</button>
-          <Card project={p.id}/>
+          <Card project={p}/>
         </div> )}
 
     </div>
