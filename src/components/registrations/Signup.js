@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import Button from '@material-ui/core/Button';
+
 
 class Signup extends Component {
   constructor(props) {
@@ -95,9 +97,9 @@ render() {
             onChange={this.handleChange}
           />
 
-          <button placeholder="submit" type="submit">
+          <Button variant="contained" type="submit" placeholder="submit" color="secondary">
             Sign Up
-          </button>
+          </Button>
 
         </form>
         <div>

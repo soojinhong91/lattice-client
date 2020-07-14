@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import 'fontsource-roboto';
+import { Typography } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import Home from './Home'
 import Login from './registrations/Login'
 import Signup from './registrations/Signup'
@@ -55,21 +58,10 @@ class App extends Component {
           <BrowserRouter>
             <Switch>
               <Route
-                exact path='/login'
-                render={props => (
-                <Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
-                )}
-              />
-              <Route
-                exact path='/signup'
-                render={props => (
-                <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
-                )}
-              />
-              <Route
                 exact path='/'
                 render={props => (
-                <Home {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>
+                <Home {...props} handleLogout={this.handleLogout}
+                handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
                 )}
               />
             </Switch>

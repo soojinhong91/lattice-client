@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
-      email: '',
-      password: '',
+      email: 'aaa@ga.co',
+      password: 'chicken',
       errors: ''
      };
   }
@@ -27,7 +29,7 @@ class Login extends Component {
   handleSubmit = (event) => {
       event.preventDefault()
       const {username, email, password} = this.state
-  let user = {
+      let user = {
         username: username,
         email: email,
         password: password
@@ -83,12 +85,9 @@ render() {
             value={password}
             onChange={this.handleChange}
           />
-         <button placeholder="submit" type="submit">
+          <Button variant="contained" type="submit" placeholder="submit" color="primary">
             Log In
-          </button>
-          <div>
-            or <Link to='/signup'>sign up</Link>
-          </div>
+          </Button>
          </form>
          <div>
           {
@@ -100,3 +99,8 @@ render() {
   }
 }
 export default Login;
+
+
+// <button placeholder="submit" type="submit">
+//    Log In
+//  </button>

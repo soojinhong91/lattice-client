@@ -1,31 +1,70 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
+import Login from './registrations/Login'
+import Signup from './registrations/Signup'
 
-const Home = (props) => {
-  const handleClick = () => {
-    axios.delete('http://localhost:3000/logout', {withCredentials: true})
-     .then(response => {
-       props.handleLogout()
-       props.history.push('/')
-     })
-   .catch(error => console.log(error))
+
+class Home extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      showingLogin: false,
+      showingSignup: false,
+    }
+  }
+
+    handleClick = () => {
+      axios.delete('http://localhost:3000/logout', {withCredentials: true})
+       .then(response => {
+         this.props.handleLogout()
+         this.props.history.push('/')
+       })
+     .catch(error => console.log(error))
     }
 
+    toggleSignup = () => this.setState({showingSignup: true, showingLogin: false })
+    toggleLogin = () => this.setState({showingSignup: false, showingLogin: true })
+
+
+  render() {
   return (
 
       <div>
-        <Link to='/login'>Log In</Link>
-        <br></br>
-        <Link to='/signup'>Sign Up</Link>
-        <br></br>
         {
-          props.loggedInStatus
-          ? <Link to='/logout' onClick={handleClick}>Log Out</Link>
+          this.props.loggedInStatus
+          ? null
+          :  <div>
+              <Button onClick={ this.toggleLogin } variant="contained" type="submit" placeholder="submit" color="primary">
+                Log In
+              </Button>
+              <Button onClick={ this.toggleSignup } variant="contained" type="submit" placeholder="submit" color="secondary">
+                Sign Up
+              </Button>
+              <br></br>
+              { this.state.showingLogin && <Login handleLogin={this.props.handleLogin}/> }
+              { this.state.showingSignup && <Signup handleLogin={ this.props.handleLogin }/> }
+            </div>
+        }
+
+        {
+          this.props.loggedInStatus
+          ? <Button variant="contained" to='/logout' onClick={this.handleClick}>Log Out</Button>
           : null
         }
       </div>
     );
+  }
 };
 
 export default Home;
+
+// I want to put this on line 33 conditionally
+// <Login />
+// <Signup />
+
+
+//I need to handle the click event for eithe the login or signup buttons.
+//They will need to be two different buttons, onLogin and onSignup
+//Will I need to create a boolean? in a state that starts as false, and when true renders the next component?
