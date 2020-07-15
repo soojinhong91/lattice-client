@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-const SERVER_URL_PROJECTS = 'http://localhost:3000/projects'
+const SERVER_URL_TASKS = 'http://localhost:3000/tasks'
 
 class Task extends Component {
   constructor() {
@@ -12,19 +12,26 @@ class Task extends Component {
     this.saveTaskDetailChange = this.saveTaskDetailChange.bind(this);
   }
 
+
+
   saveTaskDetailChange(detail) {
     console.log(detail)
-    axios.post(SERVER_URL_PROJECTS, {taskDetailChanged: detail}).then( (res) => {
-      this.setState({ taskDetail: [... this.state.taskDetail, res.data]});
+    axios.post(SERVER_URL_TASKS, {
+      description: detail,
+      card_id: 1, //change this to actual card idea
+    }).then( (res) => {
+      this.setState({ taskDetail: res.data.task.description});
+      console.log(res.data)
     } );
   }
+
+
 
   render() {
     return(
       <div>
         <h3>Tasks</h3>
         <TaskForm onFocusout={ this.saveTaskDetailChange }/>
-        <TaskList />
       </div>
     );
   }
@@ -49,19 +56,10 @@ class TaskForm extends Component {
 
   render() {
     return(
-        <textarea value={ this.state.taskDetailChanged } required cols="30" rows="1" onChange={ this._handleTaskChange } onFocusout={ this._handleTaskSubmit }></textarea>
+        <textarea value={ this.state.taskDetailChanged } required cols="30" rows="1" onChange={ this._handleTaskChange } onBlur={ this._handleTaskSubmit }></textarea>
     );
   }
 }
-
-const TaskList = () => {
-  return (
-    <div>
-      <p>TaskList coming soon</p>
-    </div>
-  );
-}
-
 
 export default Task;
 

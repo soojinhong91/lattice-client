@@ -40,7 +40,10 @@ class Lattice extends Component {
       <div>
         <h1>Projects</h1>
         <ProjectForm onSubmit={ this.saveProject } />
-        <ProjectList pickProject={ this.changeCurrentlyRendering} name={ this.state.name } projectInFocus={ this.state.currentlyRendering }/>
+        <ProjectList
+          pickProject={ this.changeCurrentlyRendering}
+          name={ this.state.name }
+          projectInFocus={ this.state.currentlyRendering }/>
       </div>
     );
   }
