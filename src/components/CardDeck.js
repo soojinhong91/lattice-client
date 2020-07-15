@@ -5,8 +5,11 @@ import Task from './Task'
 class CardDeck extends Component {
   render() {
     return(
-      <h1>CardDeck coming soon</h1>
-      <Card />
+      <div>
+        <h1>CardDeck coming soon</h1>
+        <Card />
+      </div>
+
     );
   }
 }
@@ -19,6 +22,7 @@ class Card extends Component {
       // console.log(this.props.project.cards)
       <div>
         <p>card will be displayed</p>
+        <Task />
       </div>
 
     );
