@@ -15,6 +15,7 @@ class Lattice extends Component {
     const fetchProjects = () => {
       axios.get(SERVER_URL_PROJECTS).then( (res) => {
         this.setState({name: res.data, currentlyRendering: res.data[0]});
+        console.log(res.data[0].tasks)
       })
     }
 
@@ -26,8 +27,10 @@ class Lattice extends Component {
 
 
   saveProject(data) {
-    axios.post(SERVER_URL_PROJECTS, {name: data}).then((res) => {
+    axios.post(SERVER_URL_PROJECTS, {name: data}, {withCredentials: true}).then((res) => {
       this.setState({name: res.data.projects})
+      console.log(res.data)
+
     })
   }
 
@@ -40,7 +43,11 @@ class Lattice extends Component {
       <div>
         <h1>Projects</h1>
         <ProjectForm onSubmit={ this.saveProject } />
-        <ProjectList pickProject={ this.changeCurrentlyRendering} name={ this.state.name } projectInFocus={ this.state.currentlyRendering }/>
+        <ProjectList
+          pickProject={ this.changeCurrentlyRendering}
+          projectNames={ this.state.name }
+          projectInFocus={ this.state.currentlyRendering }
+        />
       </div>
     );
   }
@@ -79,7 +86,7 @@ class ProjectForm extends Component {
 const ProjectList = (props) => {
   return (
     <div>
-      { props.name.map( (p, i) =>
+      { props.projectNames.map( (p, i) =>
         <div>
           <button onClick={ () => props.pickProject(i) } key={ p.project.id }>{ p.project.name }</button>
         </div> )}
