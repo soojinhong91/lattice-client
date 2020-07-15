@@ -15,10 +15,12 @@ class Task extends Component {
 
 
   saveTaskDetailChange(detail) {
-    console.log(detail)
+    if (detail === ''){
+      return
+    };
     axios.post(SERVER_URL_TASKS, {
       description: detail,
-      card_id: 1, //change this to actual card idea
+      card_id: this.props.cardIndex, //change this to actual card idea
     }, {withCredentials: true}).then( (res) => {
       this.setState({ taskDetail: res.data.task.description});
       console.log(res.data)
@@ -30,7 +32,6 @@ class Task extends Component {
   render() {
     return(
       <div>
-        <h3>Tasks</h3>
         <TaskForm onFocusout={ this.saveTaskDetailChange }/>
       </div>
     );
@@ -46,7 +47,8 @@ class TaskForm extends Component {
   }
 
   _handleTaskChange(event) {
-    this.setState({ taskDetailChanged: event.target.value});
+    console.log(event.target.value)
+    this.setState({ taskDetailChanged: event.target.value });
   }
 
   _handleTaskSubmit(event) {
@@ -56,7 +58,13 @@ class TaskForm extends Component {
 
   render() {
     return(
-        <textarea value={ this.state.taskDetailChanged } required cols="30" rows="1" onChange={ this._handleTaskChange } onBlur={ this._handleTaskSubmit }></textarea>
+        <textarea
+          value={ this.state.taskDetailChanged }
+          placeholder="Add your task"
+          required
+          onChange={ this._handleTaskChange }
+          onBlur={ this._handleTaskSubmit }>
+        </textarea>
     );
   }
 }
