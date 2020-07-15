@@ -19,7 +19,7 @@ class Task extends Component {
     axios.post(SERVER_URL_TASKS, {
       description: detail,
       card_id: 1, //change this to actual card idea
-    }).then( (res) => {
+    }, {withCredentials: true}).then( (res) => {
       this.setState({ taskDetail: res.data.task.description});
       console.log(res.data)
     } );
