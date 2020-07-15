@@ -25,7 +25,7 @@ class Card extends Component {
     return(
       <div>
         {this.props.cards.tasks[this.props.cardIndex].map((t) =>
-        <p key={t.id}>{t.description}</p>
+        <textarea key={t.id}>{t.description}</textarea>
       )}
       </div>
 
