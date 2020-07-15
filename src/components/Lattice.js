@@ -74,7 +74,12 @@ class ProjectForm extends Component {
   render() {
     return (
       <form onSubmit={ this._handleSubmit }>
-        <input value={ this.state.newProject } onChange={ this._handleChange } placeholder="chores" required />
+        <input
+          value={ this.state.newProject }
+          onChange={ this._handleChange }
+          placeholder="Add new project"
+          required
+        />
         <input type="submit" value="Add"/>
       </form>
     );
@@ -87,9 +92,17 @@ const ProjectList = (props) => {
     <div>
       { props.name.map( (p, i) =>
         <div>
-          <button onClick={ () => props.pickProject(i) } key={ p.project.id }>{ p.project.name }</button>
+          <button
+            onClick={ () => props.pickProject(i) }
+            key={ p.project.id }>
+              { p.project.name }
+          </button>
+          <button>Delete this project</button>
         </div> )}
-        <CardDeck projectCards={ props.projectInFocus }/>
+        <CardDeck
+          projectCards={ props.projectInFocus }
+
+        />
     </div>
   );
 };
@@ -99,6 +112,8 @@ export default Lattice;
 
 
 {/*
+  line 104: deleteClick={ this._handleDelete }
+
   <CardDeck info={this.state.currentlyRendering}
       the buttons
   <Card project={p.cards}/>
