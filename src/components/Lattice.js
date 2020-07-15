@@ -94,15 +94,20 @@ class ProjectForm extends Component {
 const ProjectList = (props) => {
   console.log(props.name)
   return (
-    <List component="nav">
-      <div class="projects">
+  <List component="nav">
+    <div class="projects">
         { props.name.map( (p, i) =>
-          <ListItem button onClick={ () => props.pickProject(i) } key={ p.project.id }>
-            <ListItemText primary={ p.project.name}/ >
-          </ListItem>)}
-        </div>
-        <CardDeck projectCards={ props.projectInFocus }/>
-    </List>
+          <div>
+            <ListItem button onClick={ () => props.pickProject(i) } key={ p.project.id }>
+              <ListItemText primary={ p.project.name}/ >
+            </ListItem>
+            <button>Delete this project</button>
+          </div> )}
+          <CardDeck
+            projectCards={ props.projectInFocus }
+            />
+    </div>
+  </List>
   );
 };
 
@@ -111,8 +116,19 @@ export default Lattice;
 
 
 {/*
+  line 104: deleteClick={ this._handleDelete }
+
   <CardDeck info={this.state.currentlyRendering}
       the buttons
   <Card project={p.cards}/>
   */}
 // <button key={ p.project.id }>{ p.project.name }</button>
+
+
+//         <input
+//           value={ this.state.newProject }
+//           onChange={ this._handleChange }
+//           placeholder="Add new project"
+//           required
+//         />
+//         <input type="submit" value="Add"/>

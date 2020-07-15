@@ -33,8 +33,7 @@ class Task extends Component {
   render() {
     return(
       <div>
-        <h3>Tasks</h3>
-        <TaskForm onBlur={ this.saveTaskDetailChange }/>
+        <h4><TaskForm onBlur={ this.saveTaskDetailChange }/></h4>
       </div>
     );
   }
@@ -49,18 +48,27 @@ class TaskForm extends Component {
   }
 
   _handleTaskChange(event) {
-    this.setState({ taskDetailChanged: event.target.value});
+    this.setState({ taskDetailChanged: event.target.value });
   }
 
   _handleTaskSubmit(event) {
     console.log(event.target.value)
-    this.props.onBlur( this.state.taskDetailChanged );  //what does this do?
+    this.props.onBlur( this.state.taskDetailChanged );
     this.setState({ taskDetailChanged: '' });
   }
 
   render() {
     return(
-        <textarea value={ this.state.taskDetailChanged } required cols="30" rows="1" onChange={ this._handleTaskChange } onBlur={ this._handleTaskSubmit }></textarea>
+      <div>
+        <textarea
+          value={ this.state.taskDetailChanged }
+          placeholder="Add your task"
+          required
+          onChange={ this._handleTaskChange }
+          onBlur={ this._handleTaskSubmit }>
+        </textarea>
+      </div>
+
     );
   }
 }
