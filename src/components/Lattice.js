@@ -83,7 +83,6 @@ class ProjectForm extends Component {
 
 const ProjectList = (props) => {
   console.log(props.name)
-  debugger
   return (
     <div>
       { props.name.map( (p, i) =>

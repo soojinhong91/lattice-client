@@ -18,9 +18,10 @@ class Task extends Component {
     if (detail === ''){
       return
     };
+    console.log(this.props.cardIndex)
     axios.post(SERVER_URL_TASKS, {
       description: detail,
-      card_id: this.props.cardIndex, //change this to actual card idea
+      card_id: (this.props.cardIndex + 1), //+1 because of 0 index in cardIndex array
     }, {withCredentials: true}).then( (res) => {
       this.setState({ taskDetail: res.data.task.description});
       console.log(res.data)
@@ -33,7 +34,7 @@ class Task extends Component {
     return(
       <div>
         <h3>Tasks</h3>
-        <TaskForm onFocusout={ this.saveTaskDetailChange }/>
+        <TaskForm onBlur={ this.saveTaskDetailChange }/>
       </div>
     );
   }
@@ -48,12 +49,12 @@ class TaskForm extends Component {
   }
 
   _handleTaskChange(event) {
-    console.log(event.target.value)
     this.setState({ taskDetailChanged: event.target.value});
   }
 
   _handleTaskSubmit(event) {
-    this.props.onFocusout( this.state.taskDetailChanged );
+    console.log(event.target.value)
+    this.props.onBlur( this.state.taskDetailChanged );  //what does this do?
     this.setState({ taskDetailChanged: '' });
   }
 

@@ -22,16 +22,16 @@ class CardDeck extends Component {
 class Card extends Component {
 
   render(props) {
+    console.log(this.props.cardIndex)
     return(
       <div>
         {this.props.cards.tasks[this.props.cardIndex].map((t) =>
         <div>
           <textarea key={t.id}>{t.description}</textarea>
-          <Task cardIndex={t}/>
         </div>
       )}
+      <Task cardIndex={this.props.cardIndex}/>
       </div>
-
     );
   }
 }
