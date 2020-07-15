@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Card from './Card'
+import CardDeck from './CardDeck'
 
 const SERVER_URL_PROJECTS = 'http://localhost:3000/projects'
 
@@ -22,6 +22,8 @@ class Lattice extends Component {
     fetchProjects();
     this.saveProject = this.saveProject.bind(this)
   }
+
+
 
   saveProject(data) {
     axios.post(SERVER_URL_PROJECTS, {name: data}).then((res) => {
@@ -80,10 +82,14 @@ const ProjectList = (props) => {
       { props.name.map( (p, i) =>
         <div>
           <button onClick={ () => props.pickProject(i) } key={ p.project.id }>{ p.project.name }</button>
-          <Card project={p.cards}/>
+          <CardDeck />
+
         </div> )}
-    {/* <CardDeck info={this.state.currentlyRendering}
-          the buttons */}
+    {/*
+      <CardDeck info={this.state.currentlyRendering}
+          the buttons
+      <Card project={p.cards}/>
+      */}
     </div>
   );
 };
