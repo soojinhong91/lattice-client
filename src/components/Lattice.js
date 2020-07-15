@@ -77,15 +77,15 @@ class ProjectForm extends Component {
 }
 
 const ProjectList = (props) => {
+  console.log(props)
   return (
     <div>
-      { props.name.map( (p, i) =>
+      { props.name && props.name.map( (p, i) =>
         <div>
           <button onClick={ () => props.pickProject(i) } key={ p.project.id }>{ p.project.name }</button>
         </div> )}
         <CardDeck projectCards={ props.projectInFocus }/>
     </div>
-
   );
 };
 
