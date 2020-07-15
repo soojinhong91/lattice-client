@@ -11,7 +11,6 @@ class Lattice extends Component {
       name: [],
       currentlyRendering: {}
     };
-    this.saveProject = this.saveProject.bind(this);
 
     const fetchProjects = () => {
       axios.get(SERVER_URL_PROJECTS).then( (res) => {
@@ -22,16 +21,11 @@ class Lattice extends Component {
 
     fetchProjects();
     this.saveProject = this.saveProject.bind(this)
-
   }
 
   saveProject(data) {
-    console.log(data)
     axios.post(SERVER_URL_PROJECTS, {name: data}).then((res) => {
-      console.log(data)
-      console.log(res.data)
       this.setState({name: res.data.projects})
-
     })
   }
 
@@ -43,13 +37,14 @@ class Lattice extends Component {
     return(
       <div>
         <h1>Projects</h1>
-
         <ProjectForm onSubmit={ this.saveProject } />
         <ProjectList pickProject={ this.changeCurrentlyRendering} name={ this.state.name } />
       </div>
     );
   }
 }
+
+
 
 class ProjectForm extends Component {
   constructor() {
