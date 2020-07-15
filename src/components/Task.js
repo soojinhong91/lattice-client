@@ -15,11 +15,13 @@ class Task extends Component {
 
 
   saveTaskDetailChange(detail) {
-    console.log(detail)
+    if (detail === ''){
+      return
+    };
     axios.post(SERVER_URL_TASKS, {
       description: detail,
-      card_id: 1, //change this to actual card idea
-    }).then( (res) => {
+      card_id: this.props.cardIndex, //change this to actual card idea
+    }, {withCredentials: true}).then( (res) => {
       this.setState({ taskDetail: res.data.task.description});
       console.log(res.data)
     } );
@@ -46,6 +48,7 @@ class TaskForm extends Component {
   }
 
   _handleTaskChange(event) {
+    console.log(event.target.value)
     this.setState({ taskDetailChanged: event.target.value});
   }
 
