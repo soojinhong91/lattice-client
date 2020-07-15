@@ -9,6 +9,7 @@ class CardDeck extends Component {
     super();
     this.state = {
       cardDetail: ''
+
     }
     this.saveCardDetailCreate = this.saveCardDetailCreate.bind(this);
   }

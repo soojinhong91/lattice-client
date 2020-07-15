@@ -32,7 +32,8 @@ class Task extends Component {
   render() {
     return(
       <div>
-        <TaskForm onFocusout={ this.saveTaskDetailChange }/>
+        <TaskForm onBlur={ this.saveTaskDetailChange }/>
+
       </div>
     );
   }
@@ -52,7 +53,7 @@ class TaskForm extends Component {
   }
 
   _handleTaskSubmit(event) {
-    this.props.onFocusout( this.state.taskDetailChanged );
+    this.props.onBlur( this.state.taskDetailChanged );
     this.setState({ taskDetailChanged: '' });
   }
 
