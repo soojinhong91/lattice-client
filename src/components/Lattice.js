@@ -14,13 +14,13 @@ class Lattice extends Component {
 
     const fetchProjects = () => {
       axios.get(SERVER_URL_PROJECTS).then( (res) => {
-        console.log(res.data)
         this.setState({name: res.data, currentlyRendering: res.data[0]});
       })
     }
 
     fetchProjects();
     this.saveProject = this.saveProject.bind(this)
+    this.changeCurrentlyRendering = this.changeCurrentlyRendering.bind(this)
   }
 
 
@@ -40,7 +40,7 @@ class Lattice extends Component {
       <div>
         <h1>Projects</h1>
         <ProjectForm onSubmit={ this.saveProject } />
-        <ProjectList pickProject={ this.changeCurrentlyRendering} name={ this.state.name } />
+        <ProjectList pickProject={ this.changeCurrentlyRendering} name={ this.state.name } projectInFocus={ this.state.currentlyRendering }/>
       </div>
     );
   }
@@ -82,18 +82,20 @@ const ProjectList = (props) => {
       { props.name.map( (p, i) =>
         <div>
           <button onClick={ () => props.pickProject(i) } key={ p.project.id }>{ p.project.name }</button>
-          <CardDeck />
-
         </div> )}
-    {/*
-      <CardDeck info={this.state.currentlyRendering}
-          the buttons
-      <Card project={p.cards}/>
-      */}
+        <CardDeck projectCards={ props.projectInFocus }/>
     </div>
+
   );
 };
 
 export default Lattice;
 
+
+
+{/*
+  <CardDeck info={this.state.currentlyRendering}
+      the buttons
+  <Card project={p.cards}/>
+  */}
 // <button key={ p.project.id }>{ p.project.name }</button>

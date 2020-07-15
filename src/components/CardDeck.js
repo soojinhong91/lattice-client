@@ -3,22 +3,30 @@ import axios from 'axios';
 import Task from './Task'
 
 class CardDeck extends Component {
-  render() {
+  render(props) {
+    console.log(this.props.projectCards)
     return(
-      <h1>CardDeck coming soon</h1>
-      <Card />
+      <div>
+        <h2>Card Titles</h2>
+        { this.props.projectCards.cards && this.props.projectCards.cards.map((c, i) =>
+          <div>
+            <h3 key={ c.id }>{c.name}</h3>
+            <Card cardIndex={i} cards={this.props.projectCards}/>
+          </div>
+        )}
+      </div>
     );
   }
 }
 
 class Card extends Component {
 
-  render() {
-    // console.log(this.state.data.cards)
+  render(props) {
     return(
-      // console.log(this.props.project.cards)
       <div>
-        <p>card will be displayed</p>
+        {this.props.cards.tasks[this.props.cardIndex].map((t) =>
+        <p key={t.id}>{t.description}</p>
+      )}
       </div>
 
     );
@@ -26,6 +34,3 @@ class Card extends Component {
 }
 
 export default CardDeck;
-
-// render a Task component and pass a card prop with the card object
-// <Task card={ pass the card object here }/>
