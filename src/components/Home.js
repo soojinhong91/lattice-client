@@ -38,6 +38,7 @@ class Home extends Component {
           this.props.loggedInStatus
           ? null
           :  <div>
+              <h1>Lattice</h1>
               <Button onClick={ this.toggleLogin } variant="contained" type="submit" placeholder="submit" color="primary">
                 Log In
               </Button>
@@ -53,6 +54,7 @@ class Home extends Component {
         {
           this.props.loggedInStatus
           ? <div>
+              <h1>Lattice</h1>
               <Button variant="contained" to='/logout' onClick={this.handleClick}>Log Out</Button>
               <Lattice />
             </div>

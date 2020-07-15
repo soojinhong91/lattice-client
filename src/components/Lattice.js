@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import CardDeck from './CardDeck'
+//from here is new and is just styling
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+
 
 const SERVER_URL_PROJECTS = 'http://localhost:3000/projects'
 
@@ -74,8 +83,9 @@ class ProjectForm extends Component {
   render() {
     return (
       <form onSubmit={ this._handleSubmit }>
-        <input value={ this.state.newProject } onChange={ this._handleChange } placeholder="chores" required />
-        <input type="submit" value="Add"/>
+        <TextField id="outlined-basic" variant="outlined" value={ this.state.newProject } onChange={ this._handleChange } placeholder="Remodel the Kitchen" required />
+        <Button variant="contained" type="submit" color="primary"> Add Project
+        </Button>
       </form>
     );
   }
@@ -84,13 +94,15 @@ class ProjectForm extends Component {
 const ProjectList = (props) => {
   console.log(props.name)
   return (
-    <div>
-      { props.name.map( (p, i) =>
-        <div>
-          <button onClick={ () => props.pickProject(i) } key={ p.project.id }>{ p.project.name }</button>
-        </div> )}
+    <List component="nav">
+      <div class="projects">
+        { props.name.map( (p, i) =>
+          <ListItem button onClick={ () => props.pickProject(i) } key={ p.project.id }>
+            <ListItemText primary={ p.project.name}/ >
+          </ListItem>)}
+        </div>
         <CardDeck projectCards={ props.projectInFocus }/>
-    </div>
+    </List>
   );
 };
 

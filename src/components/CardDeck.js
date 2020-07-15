@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Task from './Task'
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+
+
 
 class CardDeck extends Component {
   render(props) {
     console.log(this.props.projectCards)
     return(
-      <div>
-        <h2>Card Titles</h2>
-        { this.props.projectCards.cards && this.props.projectCards.cards.map((c, i) =>
-          <div>
-            <h3 key={ c.id }>{c.name}</h3>
-            <Card cardIndex={i} cards={this.props.projectCards}/>
-          </div>
-        )}
-      </div>
+      <Card>
+        <CardContent>
+          <h2>Card Titles</h2>
+          { this.props.projectCards.cards && this.props.projectCards.cards.map((c, i) =>
+            <div>
+              <h3 key={ c.id }>{c.name}</h3>
+              <SingleCard cardIndex={i} cards={this.props.projectCards}/>
+            </div>
+          )}
+        </CardContent>
+      </Card>
     );
   }
 }
 
-class Card extends Component {
+class SingleCard extends Component {
 
   render(props) {
     console.log(this.props.cardIndex)
