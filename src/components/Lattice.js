@@ -52,6 +52,8 @@ class Lattice extends Component {
     }
 
   changeCurrentlyRendering(index){
+    console.log(index)
+    console.log(this.state.name)
     this.setState({currentlyRendering: this.state.name[index]})
   }
 
@@ -114,12 +116,11 @@ const ProjectList = (props) => {
               <ListItemText primary={ p.name}/ >
             </ListItem>
             <button>Delete this project</button>
-            <CardDeck
-              projectCards={ props.projectInFocus }
-              updateTasks={props.updateTasks}
-              />
           </div> )}
-
+        <CardDeck
+          projectCards={ props.projectInFocus }
+          updateTasks={props.updateTasks}
+        />
     </div>
   </List>
   );
