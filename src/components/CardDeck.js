@@ -6,8 +6,6 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
-
-
 const SERVER_URL_CARDS = 'http://localhost:3000/cards'
 
 class CardDeck extends Component {
@@ -102,7 +100,7 @@ class CardForm extends Component {
 class SingleTask extends Component {
   render(props) {
     console.log(this.props.cardIndex)
-    console.log(this.props.cards.cards) //these are tasks
+    console.log(this.props.cards.cards[0].tasks) //these are tasks
     return(
       <div>
         {this.props.cards.cards[this.props.cardIndex].tasks.map((t) =>
