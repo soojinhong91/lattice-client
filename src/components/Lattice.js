@@ -10,6 +10,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 
+
 const SERVER_URL_PROJECTS = 'http://localhost:3000/projects'
 
 class Lattice extends Component {
@@ -82,13 +83,9 @@ class ProjectForm extends Component {
   render() {
     return (
       <form onSubmit={ this._handleSubmit }>
-        <input
-          value={ this.state.newProject }
-          onChange={ this._handleChange }
-          placeholder="Add new project"
-          required
-        />
-        <input type="submit" value="Add"/>
+        <TextField id="outlined-basic" variant="outlined" value={ this.state.newProject } onChange={ this._handleChange } placeholder="Remodel the Kitchen" required />
+        <Button variant="contained" type="submit" color="primary"> Add Project
+        </Button>
       </form>
     );
   }
@@ -114,17 +111,23 @@ const ProjectList = (props) => {
   );
 };
 
-
-
 export default Lattice;
 
 
 
 {/*
-  line 104: deleteCardClick={ this._handleDeleteCard }
-
+  line 104: deleteClick={ this._handleDelete }
   <CardDeck info={this.state.currentlyRendering}
       the buttons
   <Card project={p.cards}/>
   */}
 // <button key={ p.project.id }>{ p.project.name }</button>
+
+
+//         <input
+//           value={ this.state.newProject }
+//           onChange={ this._handleChange }
+//           placeholder="Add new project"
+//           required
+//         />
+//         <input type="submit" value="Add"/>
