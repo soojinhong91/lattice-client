@@ -25,8 +25,9 @@ class CardDeck extends Component {
       name: cardDetail,
       project_id: this.props.projectCards.id,
     }, {withCredentials:true}).then( (res) => {
-      this.setState({ cardDetail: res.data.cards })
+      this.setState({ cardDetail: '' })
       console.log(res.data)
+      this.props.updateCards(res.data)
     })
   }
 
@@ -89,7 +90,8 @@ class CardForm extends Component {
         required
         cols="30" rows="1"
         onChange={ this._handleCardChange }
-        onBlur={ this._handleCardSubmit }>
+        onBlur={ this._handleCardSubmit }
+        value={this.state.cardDetailChanged}>
       </textarea>
     );
   }
@@ -98,7 +100,7 @@ class CardForm extends Component {
 class SingleTask extends Component {
   render(props) {
     console.log(this.props.cardIndex)
-    console.log(this.props.cards.cards)
+    console.log(this.props.cards.cards[this.props.cardIndex].tasks) //these are tasks
     return(
       <div>
         {this.props.cards.cards[this.props.cardIndex].tasks.map((t) =>

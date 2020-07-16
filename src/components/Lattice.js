@@ -31,15 +31,30 @@ class Lattice extends Component {
     this.saveProject = this.saveProject.bind(this)
     this.changeCurrentlyRendering = this.changeCurrentlyRendering.bind(this)
     this.changeCurrentlyRenderingTasks = this.changeCurrentlyRenderingTasks.bind(this)
+    this.changeCurrentlyRenderingCards = this.changeCurrentlyRenderingCards.bind(this)
   }
 
-  changeCurrentlyRenderingTasks(card_id, task){
+  changeCurrentlyRenderingTasks(cardIndex, task){
     this.setState(prevState => ({
       ...prevState,
       currentlyRendering: {
         ...prevState.currentlyRendering,
-        tasks: [...prevState.currentlyRendering.tasks, task ]
+        cards: [
+          ...prevState.currentlyRendering.cards[cardIndex].tasks, task
+        ]
       }
+    }))
+  }
+
+  changeCurrentlyRenderingCards(card){
+    this.setState(prevState => ({
+      ...prevState,
+      currentlyRendering: {
+        ...prevState.currentlyRendering,
+          cards: [
+            ...prevState.currentlyRendering.cards, card
+          ]
+        }
     }))
   }
 
@@ -65,7 +80,9 @@ class Lattice extends Component {
           pickProject={ this.changeCurrentlyRendering}
           name={ this.state.name }
           projectInFocus={ this.state.currentlyRendering }
-          updateTasks={this.changeCurrentlyRenderingTasks}/>
+          updateTasks={this.changeCurrentlyRenderingTasks}
+          updateCards={this.changeCurrentlyRenderingCards}
+        />
       </div>
     );
   }
@@ -117,8 +134,10 @@ const ProjectList = (props) => {
             <button>Delete this project</button>
           </div> )}
         <CardDeck
+
           projectCards={ props.projectInFocus }
           updateTasks={props.updateTasks}
+          updateCards={props.updateCards}
         />
     </div>
   </List>
