@@ -35,15 +35,23 @@ class Lattice extends Component {
   }
 
   changeCurrentlyRenderingTasks(cardIndex, task){
-    this.setState(prevState => ({
-      ...prevState,
+    const newCards = this.state.currentlyRendering.cards.slice(0) //copying
+    newCards[cardIndex].tasks.push(task)
+
+    this.setState( {
       currentlyRendering: {
-        ...prevState.currentlyRendering,
-        cards: [
-          ...prevState.currentlyRendering.cards[cardIndex].tasks, task
-        ]
+        ...this.state.currentlyRendering,
+        cards: newCards
       }
-    }))
+    })
+
+    // this.setState(prevState => ({
+    //   ...prevState,
+    //   currentlyRendering: {
+    //     ...prevState.currentlyRendering,
+    //     cards: newCards
+    //   }
+    // }))
   }
 
   changeCurrentlyRenderingCards(card){
