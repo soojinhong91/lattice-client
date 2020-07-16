@@ -26,7 +26,7 @@ class CardDeck extends Component {
 
     axios.post(SERVER_URL_CARDS, {
       name: cardDetail,
-      project_id: 1, //placeholder
+      project_id: 5, //placeholder
     }, {withCredentials:true}).then( (res) => {
       this.setState({ cardDetail: res.data.cards })
       console.log(res.data.cards)
@@ -58,7 +58,7 @@ class CardDeck extends Component {
                 Delete this Card
               </button>
               <SingleCard cardIndex={i} cards={this.props.projectCards}/>
-              <Task />
+              <Task cardIndex={i} updateTasks={this.props.updateTasks}/>
             </div>
           )}
         </CardContent>
@@ -81,6 +81,7 @@ class CardForm extends Component {
   }
 
   _handleCardSubmit(event) {
+    event.preventDefault()
     this.props.onBlur( this.state.cardDetailChanged );
     this.setState({ cardDetailChanged: '' });
   }
@@ -98,7 +99,7 @@ class CardForm extends Component {
   }
 }
 
-
+//not a good name  this should be a single task
 class SingleCard extends Component {
   render(props) {
     return(
