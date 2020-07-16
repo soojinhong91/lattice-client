@@ -26,13 +26,23 @@ class Lattice extends Component {
         this.setState({name: res.data, currentlyRendering: res.data[0]});
       })
     }
+//add a function that gets passed as props down to SingleCard, which resets this.setState.currentlyRendering to add the new input
 
     fetchProjects();
     this.saveProject = this.saveProject.bind(this)
     this.changeCurrentlyRendering = this.changeCurrentlyRendering.bind(this)
+    this.changeCurrentlyRenderingTasks = this.changeCurrentlyRenderingTasks.bind(this)
   }
 
-
+  changeCurrentlyRenderingTasks(card_id, task){
+    this.setState(prevState => ({
+      ...prevState,
+      currentlyRendering: {
+        ...prevState.currentlyRendering,
+        tasks: [...prevState.currentlyRendering.tasks, task ]
+      }
+    }))
+  }
 
   saveProject(data) {
       axios.post(SERVER_URL_PROJECTS, {name: data}, {withCredentials: true}).then((res) => {
@@ -53,7 +63,8 @@ class Lattice extends Component {
         <ProjectList
           pickProject={ this.changeCurrentlyRendering}
           name={ this.state.name }
-          projectInFocus={ this.state.currentlyRendering }/>
+          projectInFocus={ this.state.currentlyRendering }
+          updateTasks={this.changeCurrentlyRenderingTasks}/>
       </div>
     );
   }
@@ -79,6 +90,7 @@ class ProjectForm extends Component {
     this.props.onSubmit( this.state.newProject );
     this.setState({newProject: ''});
   }
+  //this works to add projects, why cant i add tasks or cards?????
 
   render() {
     return (
@@ -98,14 +110,16 @@ const ProjectList = (props) => {
     <div class="projects">
         { props.name.map( (p, i) =>
           <div>
-            <ListItem button onClick={ () => props.pickProject(i) } key={ p.project.id }>
-              <ListItemText primary={ p.project.name}/ >
+            <ListItem button onClick={ () => props.pickProject(i) } key={ p.id }>
+              <ListItemText primary={ p.name}/ >
             </ListItem>
             <button>Delete this project</button>
+            <CardDeck
+              projectCards={ props.projectInFocus }
+              updateTasks={props.updateTasks}
+              />
           </div> )}
-          <CardDeck
-            projectCards={ props.projectInFocus }
-            />
+
     </div>
   </List>
   );
@@ -117,6 +131,7 @@ export default Lattice;
 
 {/*
   line 104: deleteClick={ this._handleDelete }
+
   <CardDeck info={this.state.currentlyRendering}
       the buttons
   <Card project={p.cards}/>

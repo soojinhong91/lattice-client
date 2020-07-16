@@ -24,17 +24,16 @@ class Task extends Component {
       card_id: (this.props.cardIndex + 1), //+1 because of 0 index in cardIndex array
     }, {withCredentials: true}).then( (res) => {
       this.setState({ taskDetail: res.data.task.description});
+      this.props.updateTasks((this.props.cardIndex + 1), this.state.taskDetailChanged )
       console.log(res.data)
     } );
   }
 
 
-
+//is this where we add the function?
   render() {
     return(
-      <div>
-        <h4><TaskForm onBlur={ this.saveTaskDetailChange }/></h4>
-      </div>
+      <TaskForm onBlur={ this.saveTaskDetailChange }/>
     );
   }
 }
