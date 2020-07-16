@@ -33,6 +33,7 @@ class Lattice extends Component {
     this.changeCurrentlyRenderingTasks = this.changeCurrentlyRenderingTasks.bind(this)
     this.changeCurrentlyRenderingCards = this.changeCurrentlyRenderingCards.bind(this)
     this.deleteProject = this.deleteProject.bind(this)
+    this.fetchProjects = fetchProjects
   }
 
   changeCurrentlyRenderingTasks(cardIndex, task){
@@ -56,8 +57,12 @@ class Lattice extends Component {
             ...prevState.currentlyRendering.cards, card
           ]
         }
-    }))
+    }));this.fetchProjects()
   }
+
+  // addCard(card, project_id){
+  //   this.setState()
+  // }
 
   saveProject(data) {
       axios.post(SERVER_URL_PROJECTS, {name: data}, {withCredentials: true}).then((res) => {
@@ -67,9 +72,8 @@ class Lattice extends Component {
     }
 
   changeCurrentlyRendering(index){
-    console.log(index)
-    console.log(this.state.name)
-    this.setState({currentlyRendering: this.state.name[index]})
+    // console.log(this.state.name[index])
+    this.setState({name: this.state.name, currentlyRendering: this.state.name[index]})
   }
 
   deleteProject(index){
@@ -84,11 +88,10 @@ class Lattice extends Component {
           this.setState({name: projects})
         }
       }
-      }
-    )
+    })
   }
 
-  
+
 
   render() {
     return(
@@ -153,7 +156,7 @@ const ProjectList = (props) => {
             <button onClick={ () => props.deleteProject(p.id)}>Delete this project</button>
           </div> )}
         <CardDeck
-
+          allCards={props.name}
           projectCards={ props.projectInFocus }
           updateTasks={props.updateTasks}
           updateCards={props.updateCards}

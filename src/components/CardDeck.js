@@ -12,7 +12,8 @@ class CardDeck extends Component {
   constructor() {
     super();
     this.state = {
-      cardDetail: ''
+      allCards: [],
+      cardDetail: '',
     }
     this.saveCardDetailCreate = this.saveCardDetailCreate.bind(this);
   }
@@ -25,15 +26,16 @@ class CardDeck extends Component {
       name: cardDetail,
       project_id: this.props.projectCards.id,
     }, {withCredentials:true}).then( (res) => {
-      this.setState({ cardDetail: '' })
+      this.setState({ cardDetail: '', allCards: [...this.state.allCards, this.props.allCards] })
       console.log(res.data)
+      debugger
       this.props.updateCards(res.data)
     })
   }
 
 
   render(props) {
-    console.log(this.props.projectCards.cards)
+    // console.log(this.props.projectCards.cards)
     return(
       <Card>
         <CardContent>
@@ -88,8 +90,8 @@ class CardForm extends Component {
 
 class SingleTask extends Component {
   render(props) {
-    console.log(this.props.cardIndex)
-    console.log(this.props.cards.cards[0].tasks) //these are tasks
+    // console.log(this.props.cardIndex)
+    // console.log(this.props.cards.cards[0].tasks) //these are tasks
     return(
       <div>
         {this.props.cards.cards[this.props.cardIndex].tasks.map((t) =>
