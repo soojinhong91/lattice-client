@@ -12,6 +12,8 @@ import Divider from '@material-ui/core/Divider';
 
 
 const SERVER_URL_PROJECTS = 'http://localhost:3000/projects'
+// const SERVER_URL_PROJECTS = 'https://lattice-server.herokuapp.com/projects'
+
 
 class Lattice extends Component {
   constructor() {

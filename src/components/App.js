@@ -10,6 +10,10 @@ import Signup from './registrations/Signup'
 
 import Lattice from './Lattice';
 
+const LOGGED_IN_URL = 'http://localhost:3000/logged_in'
+// const LOGGED_IN_URL = 'https://lattice-server.herokuapp.com/logged_in'
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +28,7 @@ class App extends Component {
   }
 
     loginStatus = () => {
-      axios.get('http://localhost:3000/logged_in',
+      axios.get(LOGGED_IN_URL,
      {withCredentials: true})
 
       .then(response => {

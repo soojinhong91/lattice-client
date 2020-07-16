@@ -7,6 +7,9 @@ import Signup from './registrations/Signup'
 import Lattice from './Lattice';
 
 
+const LOGOUT_URL = 'http://localhost:3000/logout'
+// const LOGOUT_URL = 'https://lattice-server.herokuapp.com/logout'
+
 
 class Home extends Component {
   constructor(props){
@@ -18,7 +21,7 @@ class Home extends Component {
   }
 
     handleClick = () => {
-      axios.delete('http://localhost:3000/logout', {withCredentials: true})
+      axios.delete(LOGOUT_URL, {withCredentials: true})
        .then(response => {
          this.props.handleLogout()
          this.props.history.push('/')
