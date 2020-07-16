@@ -29,7 +29,6 @@ class Task extends Component {
   }
 
 
-//is this where we add the function?
   render() {
     return(
       <TaskForm onBlur={ this.saveTaskDetailChange }/>

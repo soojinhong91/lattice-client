@@ -102,7 +102,7 @@ class CardForm extends Component {
 class SingleTask extends Component {
   render(props) {
     console.log(this.props.cardIndex)
-    console.log(this.props.cards.cards[this.props.cardIndex].tasks) //these are tasks
+    console.log(this.props.cards.cards) //these are tasks
     return(
       <div>
         {this.props.cards.cards[this.props.cardIndex].tasks.map((t) =>
