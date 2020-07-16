@@ -31,34 +31,23 @@ class CardDeck extends Component {
     })
   }
 
-  deleteCard = (e, c) => {
-    e.preventDefault();
-
-    if (this.props.deleteClick) {
-      this.props.deleteClick(c);
-    }
-  }
-
 
   render(props) {
-    console.log(this.props.projectCards)
+    console.log(this.props.projectCards.cards)
     return(
       <Card>
         <CardContent>
-        <h3><CardForm onBlur={ this.saveCardDetailCreate }/></h3>
-          { this.props.projectCards.cards && this.props.projectCards.cards.map((c, i) =>
-            <div>
-              <h3 key={ c.id }>{c.name}</h3>
-              <button
-                type="submit"
-                onClick={ (e) => this.deleteCard(e, c) }
-                key={ c.id }>
-                Delete this Card
-              </button>
-              <SingleTask cardIndex={i} cards={this.props.projectCards}/>
-              <Task cardIndex={i} updateTasks={this.props.updateTasks}/>
-            </div>
-          )}
+          <CardForm onBlur={ this.saveCardDetailCreate }/>
+            { this.props.projectCards.cards && this.props.projectCards.cards.map((c, i) =>
+              <div>
+                <h3 key={ c.id }>{c.name}</h3>
+                <button>
+                  Delete this Card
+                </button>
+                <SingleTask cardIndex={i} cards={this.props.projectCards}/>
+                <Task cardIndex={i} updateTasks={this.props.updateTasks}/>
+              </div>
+            )}
         </CardContent>
       </Card>
     );

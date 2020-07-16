@@ -32,6 +32,7 @@ class Lattice extends Component {
     this.changeCurrentlyRendering = this.changeCurrentlyRendering.bind(this)
     this.changeCurrentlyRenderingTasks = this.changeCurrentlyRenderingTasks.bind(this)
     this.changeCurrentlyRenderingCards = this.changeCurrentlyRenderingCards.bind(this)
+    this.deleteProject = this.deleteProject.bind(this)
   }
 
   changeCurrentlyRenderingTasks(cardIndex, task){
@@ -44,14 +45,6 @@ class Lattice extends Component {
         cards: newCards
       }
     })
-
-    // this.setState(prevState => ({
-    //   ...prevState,
-    //   currentlyRendering: {
-    //     ...prevState.currentlyRendering,
-    //     cards: newCards
-    //   }
-    // }))
   }
 
   changeCurrentlyRenderingCards(card){
@@ -79,6 +72,24 @@ class Lattice extends Component {
     this.setState({currentlyRendering: this.state.name[index]})
   }
 
+  deleteProject(index){
+    const deleteURL = SERVER_URL_PROJECTS + `/${index}`
+    fetch(deleteURL, {
+      method: "DELETE"
+    }).then(() => {
+      for (let i = 0; i < this.state.name.length; i++){
+        if (this.state.name[i].id === index){
+          let projects = this.state.name;
+          let removed = projects.splice(i, 1)
+          this.setState({name: projects})
+        }
+      }
+      }
+    )
+  }
+
+  
+
   render() {
     return(
       <div>
@@ -90,6 +101,7 @@ class Lattice extends Component {
           projectInFocus={ this.state.currentlyRendering }
           updateTasks={this.changeCurrentlyRenderingTasks}
           updateCards={this.changeCurrentlyRenderingCards}
+          deleteProject={this.deleteProject}
         />
       </div>
     );
@@ -116,7 +128,7 @@ class ProjectForm extends Component {
     this.props.onSubmit( this.state.newProject );
     this.setState({newProject: ''});
   }
-  //this works to add projects, why cant i add tasks or cards?????
+
 
   render() {
     return (
@@ -130,7 +142,6 @@ class ProjectForm extends Component {
 }
 
 const ProjectList = (props) => {
-  console.log(props.name)
   return (
   <List component="nav">
     <div class="projects">
@@ -139,7 +150,7 @@ const ProjectList = (props) => {
             <ListItem button onClick={ () => props.pickProject(i) } key={ p.id }>
               <ListItemText primary={ p.name}/ >
             </ListItem>
-            <button>Delete this project</button>
+            <button onClick={ () => props.deleteProject(p.id)}>Delete this project</button>
           </div> )}
         <CardDeck
 
