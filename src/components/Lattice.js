@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import CardDeck from './CardDeck'
+//from here is new and is just styling
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 
 const SERVER_URL_PROJECTS = 'http://localhost:3000/projects'
 
@@ -89,30 +97,31 @@ class ProjectForm extends Component {
 const ProjectList = (props) => {
   console.log(props.name)
   return (
-    <div>
-      { props.name.map( (p, i) =>
-        <div>
-          <button
-            onClick={ () => props.pickProject(i) }
-            key={ p.project.id }>
-              { p.project.name }
-          </button>
-          <button>Delete this project</button>
-        </div> )}
-        <CardDeck
-          projectCards={ props.projectInFocus }
-
-        />
+  <List component="nav">
+    <div class="projects">
+        { props.name.map( (p, i) =>
+          <div>
+            <ListItem button onClick={ () => props.pickProject(i) } key={ p.project.id }>
+              <ListItemText primary={ p.project.name}/ >
+            </ListItem>
+            <button>Delete this project</button>
+          </div> )}
+          <CardDeck
+            projectCards={ props.projectInFocus }
+            />
     </div>
+  </List>
   );
 };
+
+
 
 export default Lattice;
 
 
 
 {/*
-  line 104: deleteClick={ this._handleDelete }
+  line 104: deleteCardClick={ this._handleDeleteCard }
 
   <CardDeck info={this.state.currentlyRendering}
       the buttons

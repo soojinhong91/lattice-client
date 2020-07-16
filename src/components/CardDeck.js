@@ -3,6 +3,7 @@ import axios from 'axios';
 import Task from './Task'
 
 const SERVER_URL_CARDS = 'http://localhost:3000/cards'
+const SERVER_URL_TASKS = 'http://localhost:3000/tasks'
 
 class CardDeck extends Component {
   constructor() {
@@ -27,13 +28,22 @@ class CardDeck extends Component {
     })
   }
 
+  handleDeleteTask = t => {
+    console.log(t)
+    debugger
+    axios.delete(SERVER_URL_TASKS)
+    .then( res => {
+    console.log(res.data)})}
+
+
   deleteCard = (e, c) => {
     e.preventDefault();
 
-    if (this.props.deleteClick) {
-      this.props.deleteClick(c);
+    if (this.props.deleteCardClick) {
+      this.props.deleteCardClick(c);
     }
   }
+
 
 
   render(props) {
@@ -51,7 +61,7 @@ class CardDeck extends Component {
               Delete this Card
             </button>
             <Card cardIndex={i} cards={ this.props.projectCards }/>
-            <Task />
+            <Task cardIndex={i} />
           </div>
         )}
       </div>
@@ -92,13 +102,32 @@ class CardForm extends Component {
 
 
 class Card extends Component {
+  constructor() {
+    super();
+
+    this.deleteTask = this.deleteTask.bind(this);
+  }
+
+  deleteTask = (e, t) => {
+    e.preventDefault();
+
+    if (this.props.deleteTaskClick) {
+      this.props.deleteTaskClick(t);
+    }
+  }
+
   render(props) {
     return(
       <div>
         {this.props.cards.tasks[this.props.cardIndex].map((t) =>
           <div>
             <textarea key={t.id}>{t.description}</textarea>
-            <button>Delete this task</button>
+            <button
+              type="submit"
+              onClick={ (e) => this.deleteTask(e, t) }
+              key={ t.id }>
+              Delete this task
+            </button>
           </div>
         )}
       </div>
