@@ -26,7 +26,6 @@ class Lattice extends Component {
         this.setState({name: res.data, currentlyRendering: res.data[0]});
       })
     }
-//add a function that gets passed as props down to SingleCard, which resets this.setState.currentlyRendering to add the new input
 
     fetchProjects();
     this.saveProject = this.saveProject.bind(this)

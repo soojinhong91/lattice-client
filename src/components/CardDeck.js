@@ -23,13 +23,12 @@ class CardDeck extends Component {
     if (cardDetail === '') {
       return
     };
-    console.log(this.props.projectCards.id)
     axios.post(SERVER_URL_CARDS, {
       name: cardDetail,
       project_id: this.props.projectCards.id,
     }, {withCredentials:true}).then( (res) => {
       this.setState({ cardDetail: res.data.cards })
-      console.log(res.data.cards)
+      console.log(res.data)
     })
   }
 
@@ -76,7 +75,6 @@ class CardForm extends Component {
   }
 
   _handleCardChange(event) {
-    console.log(event.target.value)
     this.setState({ cardDetailChanged: event.target.value });
   }
 
