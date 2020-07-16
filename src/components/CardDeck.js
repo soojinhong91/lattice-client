@@ -6,8 +6,6 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
-
-
 const SERVER_URL_CARDS = 'http://localhost:3000/cards'
 
 class CardDeck extends Component {
@@ -29,7 +27,7 @@ class CardDeck extends Component {
       project_id: this.props.projectCards.id,
     }, {withCredentials:true}).then( (res) => {
       this.setState({ cardDetail: res.data.cards })
-      console.log(res.data.cards)
+      console.log(res)
     })
   }
 
