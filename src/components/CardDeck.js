@@ -26,7 +26,7 @@ class CardDeck extends Component {
 
     axios.post(SERVER_URL_CARDS, {
       name: cardDetail,
-      project_id: 5, //placeholder
+      project_id: 1, //placeholder
     }, {withCredentials:true}).then( (res) => {
       this.setState({ cardDetail: res.data.cards })
       console.log(res.data.cards)
@@ -57,7 +57,7 @@ class CardDeck extends Component {
                 key={ c.id }>
                 Delete this Card
               </button>
-              <SingleCard cardIndex={i} cards={this.props.projectCards}/>
+              <SingleTask cardIndex={i} cards={this.props.projectCards}/>
               <Task cardIndex={i} updateTasks={this.props.updateTasks}/>
             </div>
           )}
@@ -99,12 +99,13 @@ class CardForm extends Component {
   }
 }
 
-//not a good name  this should be a single task
-class SingleCard extends Component {
+class SingleTask extends Component {
   render(props) {
+    console.log(this.props.cardIndex)
+    console.log(this.props.cards.cards)
     return(
       <div>
-        {this.props.cards.tasks[this.props.cardIndex].map((t) =>
+        {this.props.cards.cards[this.props.cardIndex].tasks.map((t) =>
           <div>
             <textarea key={t.id}>{t.description}</textarea>
             <button>Delete this task</button>
