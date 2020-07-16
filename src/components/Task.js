@@ -18,13 +18,12 @@ class Task extends Component {
     if (detail === ''){
       return
     };
-    console.log(this.props.cardIndex)
     axios.post(SERVER_URL_TASKS, {
       description: detail,
       card_id: (this.props.cardIndex + 1), //+1 because of 0 index in cardIndex array
     }, {withCredentials: true}).then( (res) => {
-      this.setState({ taskDetail: res.data.task.description});
-      this.props.updateTasks((this.props.cardIndex + 1), this.state.taskDetailChanged )
+      this.setState({ taskDetail: ''});
+      this.props.updateTasks(this.props.cardIndex, res.data )
       console.log(res.data)
     } );
   }
