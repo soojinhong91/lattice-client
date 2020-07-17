@@ -41,7 +41,7 @@ class CardDeck extends Component {
       <Card>
         <CardContent>
           <CardForm onBlur={ this.saveCardDetailCreate }/>
-            { this.props.projectCards.cards && this.props.projectCards.cards.map((c, i) =>
+            { this.props.projectCards && this.props.projectCards.cards && this.props.projectCards.cards.map((c, i) =>
               <div>
                 <h3 key={ c.id }>{c.name}</h3>
                 <button>
