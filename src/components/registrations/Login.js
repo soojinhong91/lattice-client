@@ -69,7 +69,7 @@ class Login extends Component {
     }
 
 render() {
-    const {name, email, password} = this.state
+    const {/*name,*/ email, password} = this.state
   return (
       <div>
         <h1>Log In</h1>

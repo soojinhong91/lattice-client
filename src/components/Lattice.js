@@ -86,7 +86,7 @@ class Lattice extends Component {
       for (let i = 0; i < this.state.name.length; i++){
         if (this.state.name[i].id === index){
           let projects = this.state.name;
-          let removed = projects.splice(i, 1)
+          projects.splice(i, 1)
           this.setState({name: projects})
         }
       }
@@ -172,13 +172,13 @@ export default Lattice;
 
 
 
-{/*
+/*
   line 104: deleteClick={ this._handleDelete }
 
   <CardDeck info={this.state.currentlyRendering}
       the buttons
   <Card project={p.cards}/>
-  */}
+  */
 // <button key={ p.project.id }>{ p.project.name }</button>
 
 
