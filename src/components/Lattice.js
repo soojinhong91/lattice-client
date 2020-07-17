@@ -10,7 +10,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 
-
 const SERVER_URL_PROJECTS = 'http://localhost:3000/projects'
 
 class Lattice extends Component {
@@ -44,14 +43,6 @@ class Lattice extends Component {
         cards: newCards
       }
     })
-
-    // this.setState(prevState => ({
-    //   ...prevState,
-    //   currentlyRendering: {
-    //     ...prevState.currentlyRendering,
-    //     cards: newCards
-    //   }
-    // }))
   }
 
   changeCurrentlyRenderingCards(card){
@@ -81,8 +72,8 @@ class Lattice extends Component {
 
   render() {
     return(
-      <div>
-        <h1>Projects</h1>
+      <div class="grid-container">
+        <h2 class="project heading">Project List</h2>
         <ProjectForm onSubmit={ this.saveProject } />
         <ProjectList
           pickProject={ this.changeCurrentlyRendering}
@@ -92,6 +83,7 @@ class Lattice extends Component {
           updateCards={this.changeCurrentlyRenderingCards}
         />
       </div>
+
     );
   }
 }
@@ -120,9 +112,20 @@ class ProjectForm extends Component {
 
   render() {
     return (
-      <form onSubmit={ this._handleSubmit }>
-        <TextField id="outlined-basic" variant="outlined" value={ this.state.newProject } onChange={ this._handleChange } placeholder="Remodel the Kitchen" required />
-        <Button variant="contained" type="submit" color="primary"> Add Project
+      <form class="project " onSubmit={ this._handleSubmit }>
+        <TextField
+          id="outlined-basic"
+          variant="outlined"
+          value={ this.state.newProject }
+          onChange={ this._handleChange }
+          placeholder="Remodel the Kitchen"
+          required
+        />
+        <Button
+          variant="contained"
+          type="submit"
+          color="primary"
+        >Add Project
         </Button>
       </form>
     );
@@ -132,23 +135,35 @@ class ProjectForm extends Component {
 const ProjectList = (props) => {
   console.log(props.name)
   return (
-  <List component="nav">
-    <div class="projects">
-        { props.name.map( (p, i) =>
-          <div>
-            <ListItem button onClick={ () => props.pickProject(i) } key={ p.id }>
-              <ListItemText primary={ p.name}/ >
-            </ListItem>
-            <button>Delete this project</button>
-          </div> )}
-        <CardDeck
+    <div>
+        <List component="nav">
 
-          projectCards={ props.projectInFocus }
-          updateTasks={props.updateTasks}
-          updateCards={props.updateCards}
-        />
+            { props.name.map( (p, i) =>
+              <div >
+                <ListItem
+                class="project list"
+                  button
+                  onClick={ () => props.pickProject(i) }
+                  key={ p.id }>
+                    <ListItemText primary={ p.name} / >
+                    <Button
+                      variant="contained"
+                      type="submit"
+                      color="secondary"
+                    >Delete this project</Button>
+                </ListItem>
+
+              </div> )}
+
+        </List>
+
+      <CardDeck
+        class="grid"
+        projectCards={ props.projectInFocus }
+        updateTasks={props.updateTasks}
+        updateCards={props.updateCards}
+      />
     </div>
-  </List>
   );
 };
 

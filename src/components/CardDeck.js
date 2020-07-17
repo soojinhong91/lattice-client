@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 const SERVER_URL_CARDS = 'http://localhost:3000/cards'
 
@@ -31,36 +33,36 @@ class CardDeck extends Component {
     })
   }
 
-  deleteCard = (e, c) => {
-    e.preventDefault();
-
-    if (this.props.deleteClick) {
-      this.props.deleteClick(c);
-    }
-  }
 
 
   render(props) {
     console.log(this.props.projectCards)
     return(
-      <Card>
-        <CardContent>
-        <h3><CardForm onBlur={ this.saveCardDetailCreate }/></h3>
-          { this.props.projectCards.cards && this.props.projectCards.cards.map((c, i) =>
-            <div>
-              <h3 key={ c.id }>{c.name}</h3>
-              <button
-                type="submit"
-                onClick={ (e) => this.deleteCard(e, c) }
-                key={ c.id }>
-                Delete this Card
-              </button>
-              <SingleTask cardIndex={i} cards={this.props.projectCards}/>
-              <Task cardIndex={i} updateTasks={this.props.updateTasks}/>
-            </div>
-          )}
-        </CardContent>
-      </Card>
+      <div className="main">
+        <Card>
+          <CardContent>
+          <h3><CardForm
+                onBlur={ this.saveCardDetailCreate }
+                /></h3>
+            { this.props.projectCards.cards && this.props.projectCards.cards.map((c, i) =>
+              <div class="cardlist">
+
+                <textarea class="existingcard" cols="18" rows="1" key={ c.id }>{c.name}</textarea>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  color="primary"
+                >
+                  Delete C
+                </Button>
+
+                <SingleTask cardIndex={i} cards={this.props.projectCards}/>
+                <Task cardIndex={i} updateTasks={this.props.updateTasks}/>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 }
@@ -86,6 +88,7 @@ class CardForm extends Component {
   render() {
     return(
       <textarea
+        class="create"
         placeholder="Add new card"
         required
         cols="30" rows="1"
@@ -102,11 +105,15 @@ class SingleTask extends Component {
     console.log(this.props.cardIndex)
     console.log(this.props.cards.cards[0].tasks) //these are tasks
     return(
-      <div>
+      <div class="tasklist">
         {this.props.cards.cards[this.props.cardIndex].tasks.map((t) =>
           <div>
-            <textarea key={t.id}>{t.description}</textarea>
-            <button>Delete this task</button>
+            <textarea class="task" key={t.id}>{t.description}</textarea>
+            <Button
+              variant="contained"
+              type="submit"
+              color="primary"
+            >Delete this task</Button>
           </div>
         )}
       </div>

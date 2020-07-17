@@ -3,11 +3,92 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+header {
+  background-color: #026aa7;
+  color: #fff;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.5);
 }
 
-div .projects {
+h1 {
   display: inline-block;
+  padding-left: 0.5em;
+}
+
+title {
+  position: relative;
+}
+
+.loginbuttons {
+  display: inline-block;
+  position: absolute;
+  right: 1em;
+  top: 1.5em;
+}
+
+/* .grid-container {
+  background-color: yellow;
+} */
+
+.project {
+  display: grid;
+  background-color: #7a869a;
+  width: 400px;
+
+}
+
+/* .main {
+  display: flex;
+  flex-direction: row;
+
+} */
+
+.MuiCardContent-root {
+  display: inline-block;
+  background-color: #eceff1;
+  border-radius: 8px;
+
+}
+.create {
+  background-color: #eceff1;
+  border: 4px solid #ccc;
+}
+
+.cardlist > textarea {
+  background-color: #ccc;
+}
+
+h2 {
+  background-color: #babdbe;
+  margin: 0;
+  padding: 5px 0;
+}
+
+.MuiCardContent-root {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.card,
+.task {
+  background-color: #eceff1;
+}
+
+h3 {
+  display: block;
+}
+
+textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 12px 20px 12px 30px;
+}
+
+textarea:focus {
+  outline-width: 1px;
+  outline-style: solid;
+  outline-color: blue;
+  background-color: #ffffff;
 }
