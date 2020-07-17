@@ -88,7 +88,7 @@ render() {
             value={password}
             onChange={this.handleChange}
           />
-          <Button variant="contained" type="submit" placeholder="submit" color="primary">
+          <Button variant="contained" type="submit" placeholder="submit" color="action">
             Log In
           </Button>
          </form>
