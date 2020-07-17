@@ -97,7 +97,7 @@ class Lattice extends Component {
 
   render() {
     return(
-      <div>
+      <div class="main-aside">
         <h1>Projects</h1>
         <ProjectForm onSubmit={ this.saveProject } />
         <ProjectList
@@ -151,7 +151,7 @@ const ProjectList = (props) => {
   <List component="nav">
     <div class="projects">
         { props.name.map( (p, i) =>
-          <div>
+          <div >
             <ListItem button onClick={ () => props.pickProject(i) } key={ p.id }>
               <ListItemText primary={ p.name}/ >
             </ListItem>

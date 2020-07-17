@@ -45,14 +45,6 @@ title {
 
 } */
 
-/*
-
-h2 {
-  background-color: #babdbe;
-  margin: 0;
-  padding: 5px 0;
-} */
-
 /* .MuiCardContent-root {
   display: flex;
   flex-direction: row;
@@ -61,17 +53,50 @@ h2 {
 } */
 
 
-/* .card,
-.task {
-  background-color: #eceff1;
+.login-input {
+  padding-left: 2em;
 }
 
-h3 {
-  display: block;
-} */
+.main-aside {
+  padding-top: 2em;
+  padding-left: 2em;
+}
 
+.projects {
+  display: inline-block;
+}
+
+
+
+.main {
+  background-color: #eceff1;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.5);
+  margin-top: 1em;
+}
+
+.single-card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1em;
+}
+
+.create-input {
+  border: 3px solid #ccc;
+}
+
+#create-card-input {
+  height: 1em;
+}
+
+#each-card {
+  margin: 1em;
+  padding: 1em;
+  background-color: #eceff1;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.5);
+}
 textarea {
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 4px;
   padding: 12px 20px 12px 30px;
 }

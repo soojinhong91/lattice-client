@@ -56,7 +56,7 @@ class Home extends Component {
 
               <br></br>
 
-              <div class="logininput">
+              <div class="login-input">
                 { this.state.showingLogin && <Login handleLogin={this.props.handleLogin}/> }
                 { this.state.showingSignup && <Signup handleLogin={ this.props.handleLogin }/> }
               </div>
