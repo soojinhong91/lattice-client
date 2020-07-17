@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Login from './registrations/Login'
@@ -69,12 +69,3 @@ class Home extends Component {
 };
 
 export default Home;
-
-// I want to put this on line 33 conditionally
-// <Login />
-// <Signup />
-
-
-//I need to handle the click event for eithe the login or signup buttons.
-//They will need to be two different buttons, onLogin and onSignup
-//Will I need to create a boolean? in a state that starts as false, and when true renders the next component?

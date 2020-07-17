@@ -4,15 +4,15 @@ import CardDeck from './CardDeck'
 //from here is new and is just styling
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
+// import Divider from '@material-ui/core/Divider';
 
 
 const SERVER_URL_PROJECTS = 'http://localhost:3000/projects'
-// const SERVER_URL_PROJECTS = 'https://lattice-server.herokuapp.com/projects'
+const SERVER_URL_PROJECTS = 'https://lattice-server.herokuapp.com/projects'
 
 
 class Lattice extends Component {

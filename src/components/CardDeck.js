@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Task from './Task'
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
+// import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
 const SERVER_URL_CARDS = 'http://localhost:3000/cards'
