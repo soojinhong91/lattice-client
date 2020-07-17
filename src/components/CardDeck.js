@@ -6,8 +6,8 @@ import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
-const SERVER_URL_CARDS = 'http://localhost:3000/cards'
-// const SERVER_URL_CARDS = 'https://lattice-server.herokuapp.com/cards'
+// const SERVER_URL_CARDS = 'http://localhost:3000/cards'
+const SERVER_URL_CARDS = 'https://lattice-server.herokuapp.com/cards'
 
 class CardDeck extends Component {
   constructor() {

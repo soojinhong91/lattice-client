@@ -10,8 +10,8 @@ import Home from './Home'
 
 // import Lattice from './Lattice';
 
-const LOGGED_IN_URL = 'http://localhost:3000/logged_in'
-// const LOGGED_IN_URL = 'https://lattice-server.herokuapp.com/logged_in'
+// const LOGGED_IN_URL = 'http://localhost:3000/logged_in'
+const LOGGED_IN_URL = 'https://lattice-server.herokuapp.com/logged_in'
 
 
 class App extends Component {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-const SERVER_URL_TASKS = 'http://localhost:3000/tasks'
-// const SERVER_URL_TASKS = 'https://lattice-server.herokuapp.com/tasks'
+// const SERVER_URL_TASKS = 'http://localhost:3000/tasks'
+const SERVER_URL_TASKS = 'https://lattice-server.herokuapp.com/tasks'
 
 class Task extends Component {
   constructor() {

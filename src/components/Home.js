@@ -7,8 +7,8 @@ import Signup from './registrations/Signup'
 import Lattice from './Lattice';
 
 
-const LOGOUT_URL = 'http://localhost:3000/logout'
-// const LOGOUT_URL = 'https://lattice-server.herokuapp.com/logout'
+// const LOGOUT_URL = 'http://localhost:3000/logout'
+const LOGOUT_URL = 'https://lattice-server.herokuapp.com/logout'
 
 
 class Home extends Component {
