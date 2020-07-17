@@ -3,6 +3,10 @@ import axios from 'axios'
 import Button from '@material-ui/core/Button';
 
 
+// const SERVER_URL_USERS = 'http://localhost:3000/users'
+const SERVER_URL_USERS = 'https://lattice-server.herokuapp.com/users'
+
+
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +37,7 @@ class Signup extends Component {
         password_confirmation: password_confirmation
       }
 
-  axios.post('http://localhost:3000/users', {user}, {withCredentials: true})
+  axios.post(SERVER_URL_USERS, {user}, {withCredentials: true})
       .then(response => {
         if (response.data.status === 'created') {
           this.props.handleLogin(response.data)

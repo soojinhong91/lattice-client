@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-const SERVER_URL_TASKS = 'http://localhost:3000/tasks'
+// const SERVER_URL_TASKS = 'http://localhost:3000/tasks'
+const SERVER_URL_TASKS = 'https://lattice-server.herokuapp.com/tasks'
 
 class Task extends Component {
   constructor() {
@@ -29,12 +30,9 @@ class Task extends Component {
   }
 
 
-//is this where we add the function?
   render() {
     return(
-      <TaskForm
-        onBlur={ this.saveTaskDetailChange }
-      />
+      <TaskForm onBlur={ this.saveTaskDetailChange }/>
     );
   }
 }
@@ -61,11 +59,9 @@ class TaskForm extends Component {
     return(
       <div>
         <textarea
-          class="create"
           value={ this.state.taskDetailChanged }
           placeholder="Add your task"
           required
-          cols="20" rows="1"
           onChange={ this._handleTaskChange }
           onBlur={ this._handleTaskSubmit }>
         </textarea>

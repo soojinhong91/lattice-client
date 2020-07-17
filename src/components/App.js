@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import 'fontsource-roboto';
-import { Typography } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
+// import { Typography } from '@material-ui/core';
+// import Button from '@material-ui/core/Button';
 import Home from './Home'
-import Login from './registrations/Login'
-import Signup from './registrations/Signup'
+// import Login from './registrations/Login'
+// import Signup from './registrations/Signup'
 
-import Lattice from './Lattice';
+// import Lattice from './Lattice';
+
+// const LOGGED_IN_URL = 'http://localhost:3000/logged_in'
+const LOGGED_IN_URL = 'https://lattice-server.herokuapp.com/logged_in'
+
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +28,7 @@ class App extends Component {
   }
 
     loginStatus = () => {
-      axios.get('http://localhost:3000/logged_in',
+      axios.get(LOGGED_IN_URL,
      {withCredentials: true})
 
       .then(response => {

@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Task from './Task'
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
+// import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 
-const SERVER_URL_CARDS = 'http://localhost:3000/cards'
+// const SERVER_URL_CARDS = 'http://localhost:3000/cards'
+const SERVER_URL_CARDS = 'https://lattice-server.herokuapp.com/cards'
 
 class CardDeck extends Component {
   constructor() {
     super();
     this.state = {
-      cardDetail: ''
+      allCards: [],
+      cardDetail: '',
     }
     this.saveCardDetailCreate = this.saveCardDetailCreate.bind(this);
   }
@@ -27,42 +27,32 @@ class CardDeck extends Component {
       name: cardDetail,
       project_id: this.props.projectCards.id,
     }, {withCredentials:true}).then( (res) => {
-      this.setState({ cardDetail: '' })
+      this.setState({ cardDetail: '', allCards: [...this.state.allCards, this.props.allCards] })
       console.log(res.data)
+      debugger
       this.props.updateCards(res.data)
     })
   }
 
 
-
   render(props) {
-    console.log(this.props.projectCards)
+    // console.log(this.props.projectCards.cards)
     return(
-      <div className="main">
-        <Card>
-          <CardContent>
-          <h3><CardForm
-                onBlur={ this.saveCardDetailCreate }
-                /></h3>
-            { this.props.projectCards.cards && this.props.projectCards.cards.map((c, i) =>
-              <div class="cardlist">
-
-                <textarea class="existingcard" cols="18" rows="1" key={ c.id }>{c.name}</textarea>
-                <Button
-                  variant="contained"
-                  type="submit"
-                  color="primary"
-                >
-                  Delete C
-                </Button>
-
+      <Card>
+        <CardContent>
+          <CardForm onBlur={ this.saveCardDetailCreate }/>
+            { this.props.projectCards && this.props.projectCards.cards && this.props.projectCards.cards.map((c, i) =>
+              <div>
+                <h3 key={ c.id }>{c.name}</h3>
+                <button>
+                  Delete this Card
+                </button>
                 <SingleTask cardIndex={i} cards={this.props.projectCards}/>
                 <Task cardIndex={i} updateTasks={this.props.updateTasks}/>
               </div>
             )}
-          </CardContent>
-        </Card>
-      </div>
+        </CardContent>
+      </Card>
     );
   }
 }
@@ -88,7 +78,6 @@ class CardForm extends Component {
   render() {
     return(
       <textarea
-        class="create"
         placeholder="Add new card"
         required
         cols="30" rows="1"
@@ -102,18 +91,14 @@ class CardForm extends Component {
 
 class SingleTask extends Component {
   render(props) {
-    console.log(this.props.cardIndex)
-    console.log(this.props.cards.cards[0].tasks) //these are tasks
+    // console.log(this.props.cardIndex)
+    // console.log(this.props.cards.cards[0].tasks) //these are tasks
     return(
-      <div class="tasklist">
+      <div>
         {this.props.cards.cards[this.props.cardIndex].tasks.map((t) =>
           <div>
-            <textarea class="task" key={t.id}>{t.description}</textarea>
-            <Button
-              variant="contained"
-              type="submit"
-              color="primary"
-            >Delete this task</Button>
+            <textarea key={t.id}>{t.description}</textarea>
+            <button>Delete this task</button>
           </div>
         )}
       </div>

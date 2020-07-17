@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Login from './registrations/Login'
 import Signup from './registrations/Signup'
 import Lattice from './Lattice';
+
+
+// const LOGOUT_URL = 'http://localhost:3000/logout'
+const LOGOUT_URL = 'https://lattice-server.herokuapp.com/logout'
 
 
 class Home extends Component {
@@ -17,7 +21,7 @@ class Home extends Component {
   }
 
     handleClick = () => {
-      axios.delete('http://localhost:3000/logout', {withCredentials: true})
+      axios.delete(LOGOUT_URL, {withCredentials: true})
        .then(response => {
          this.props.handleLogout()
          this.props.history.push('/')
@@ -89,12 +93,3 @@ class Home extends Component {
 };
 
 export default Home;
-
-// I want to put this on line 33 conditionally
-// <Login />
-// <Signup />
-
-
-//I need to handle the click event for eithe the login or signup buttons.
-//They will need to be two different buttons, onLogin and onSignup
-//Will I need to create a boolean? in a state that starts as false, and when true renders the next component?

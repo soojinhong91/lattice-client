@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import Button from '@material-ui/core/Button';
+
+// const LOGIN_URL = 'http://localhost:3000/login'
+const LOGIN_URL = 'https://lattice-server.herokuapp.com/login'
 
 
 class Login extends Component {
@@ -35,7 +38,7 @@ class Login extends Component {
         password: password
       }
 
-  axios.post('http://localhost:3000/login', {user}, {withCredentials: true})
+  axios.post(LOGIN_URL, {user}, {withCredentials: true})
       .then(response => {
         if (response.data.logged_in) {
           this.props.handleLogin(response.data)
@@ -66,7 +69,7 @@ class Login extends Component {
     }
 
 render() {
-    const {name, email, password} = this.state
+    const {/*name,*/ email, password} = this.state
   return (
       <div>
         <h1>Log In</h1>
