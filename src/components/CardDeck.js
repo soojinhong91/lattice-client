@@ -29,7 +29,7 @@ class CardDeck extends Component {
     }, {withCredentials:true}).then( (res) => {
       this.setState({ cardDetail: '', allCards: [...this.state.allCards, this.props.allCards] })
       console.log(res.data)
-      debugger
+
       this.props.updateCards(res.data)
     })
   }
@@ -38,11 +38,11 @@ class CardDeck extends Component {
   render(props) {
     // console.log(this.props.projectCards.cards)
     return(
-      <Card>
-        <CardContent>
+      <div className="main">
+        <CardContent class="single-card">
           <CardForm onBlur={ this.saveCardDetailCreate }/>
             { this.props.projectCards && this.props.projectCards.cards && this.props.projectCards.cards.map((c, i) =>
-              <div>
+              <div id="each-card">
                 <h3 key={ c.id }>{c.name}</h3>
                 <button>
                   Delete this Card
@@ -52,7 +52,7 @@ class CardDeck extends Component {
               </div>
             )}
         </CardContent>
-      </Card>
+      </div>
     );
   }
 }
@@ -77,14 +77,16 @@ class CardForm extends Component {
 
   render() {
     return(
-      <textarea
-        placeholder="Add new card"
-        required
-        cols="30" rows="1"
-        onChange={ this._handleCardChange }
-        onBlur={ this._handleCardSubmit }
-        value={this.state.cardDetailChanged}>
-      </textarea>
+        <textarea
+          id="create-card-input"
+          class="create-input"
+          placeholder="Add new card"
+          required
+          cols="30" rows="1"
+          onChange={ this._handleCardChange }
+          onBlur={ this._handleCardSubmit }
+          value={this.state.cardDetailChanged}>
+        </textarea>
     );
   }
 }

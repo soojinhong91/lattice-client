@@ -59,6 +59,7 @@ class TaskForm extends Component {
     return(
       <div>
         <textarea
+          class="create-input"
           value={ this.state.taskDetailChanged }
           placeholder="Add your task"
           required
